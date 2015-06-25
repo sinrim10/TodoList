@@ -1,0 +1,79 @@
+<!-- index.html -->
+<!doctype html>
+
+<html ng-app="lskTodo"><!-- 앵귤러 시작 -->
+<head>
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- 모바일 적용 -->
+
+    <title>Node/Angular Todo App</title>
+
+    <!-- SCROLLS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+    <style>
+        html                    { overflow-y:scroll; }
+        body                    { padding-top:50px; }
+        #todo-list              { margin-bottom:30px; }
+    </style>
+
+    <!-- SPELLS -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
+    <script src="core.js"></script>
+    <script>
+        $(function(){
+            $("#error").hide();
+            $("#submit").click(function(){
+                if($("#error").text() == ""){
+                    $("#error").hide();
+                }else{
+                    $("#error").show();
+                }
+            });
+        })
+    </script>
+
+</head>
+<!-- 컨트롤러-->
+<body ng-controller="mainController">
+<div class="container">
+
+    <!-- 리스트 카운트-->
+    <div class="jumbotron text-center">
+        <h1>내가 해야 할 일 <span class="label label-info">{{ todos.length }}</span></h1>
+    </div>
+
+    <!-- TODO LIST -->
+    <div id="todo-list" class="row">
+        <div class="col-sm-4 col-sm-offset-4">
+
+            <!-- 현재 디비에 있는 리스트 루프 -->
+            <div class="checkbox" ng-repeat="todo in todos">
+                <label>
+                    <input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text }}
+                </label>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 폼 태그 설정 -->
+    <div id="todo-form" class="row">
+        <div class="col-sm-8 col-sm-offset-2 text-center">
+            <form>
+                <div class="form-group">
+                    <input type="text" class="form-control input-lg text-center" placeholder="해야 할 일" ng-model="formData.text">
+                    <label id = "error" class="form-control label-lg text-center" ng-model="error">{{ error }}</label>
+                </div>
+
+                <!-- createToDo() WILL CREATE NEW TODOS -->
+                <button id="submit" type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
