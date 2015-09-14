@@ -1,5 +1,5 @@
 
-var lskTodo = angular.module('lskTodo', []);
+angular.module('index', []);
 //앵귤러 컨트롤러
 function mainController($scope, $http) {
     $scope.formData = {};
@@ -47,5 +47,18 @@ function mainController($scope, $http) {
                 console.log('Error: ' + data);
             });
     };
-
+    
+    $scope.search = function (){ 
+    	 
+    	/**/
+    	$http.get('/api/todos/'+$scope.search_txt)
+    			.success(function(data){
+    				$scope.todos = data;
+    				console.log(data);
+    			})
+    			.error(function(data){
+    				console.log('Error : ' + data);
+    			})
+    	/**/
+    }
 }

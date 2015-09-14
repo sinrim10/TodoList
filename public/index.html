@@ -1,7 +1,7 @@
 <!-- index.html -->
 <!doctype html>
 
-<html ng-app="lskTodo"><!-- 앵귤러 시작 -->
+<html ng-app="index"><!-- 앵귤러 시작 -->
 <head>
     <!-- META -->
     <meta charset="utf-8">
@@ -18,21 +18,9 @@
     </style>
 
     <!-- SPELLS -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
-    <script src="core.js"></script>
-    <script>
-        $(function(){
-            $("#error").hide();
-            $("#submit").click(function(){
-                if($("#error").text() == ""){
-                    $("#error").hide();
-                }else{
-                    $("#error").show();
-                }
-            });
-        })
-    </script>
+    <script src="http://code.angularjs.org/1.2.8/angular.min.js"></script><!-- load angular -->
+    <script src="/js/main.js"></script>
+   
 
 </head>
 <!-- 컨트롤러-->
@@ -57,7 +45,11 @@
 
         </div>
     </div>
-
+    
+    <div class="jumbotron text-center">
+    	검색 : <input type="text" ng-model="search_txt" ng-keyup="search()" />
+    </div>
+    
     <!-- 폼 태그 설정 -->
     <div id="todo-form" class="row">
         <div class="col-sm-8 col-sm-offset-2 text-center">
